@@ -41,6 +41,10 @@ extract_company(soup)
 #print(extract_job_title(soup))
 #print(extract_company(soup))
 
+locations = extract_location(soup)
+jobs = extract_job_title(soup)
+companies = extract_company(soup)
+
 # Building the dataframe
 # columns = {'location': locations, 'job_title': jobs, 'company_name': companies} # All I'm doing is have it pull those variables from your functions in the column in one line.
 # job_postings = [(extract_location(soup)), (extract_job_title(soup)), (extract_company(soup))]
