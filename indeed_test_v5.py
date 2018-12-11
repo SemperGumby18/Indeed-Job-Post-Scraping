@@ -34,20 +34,24 @@ def extract_company(soup):
         if len(company) > 0:
             for b in company:
                 companies.append(b.text.strip())
-    return companies
+    return companies # When you have it "return" something, that is a new variable. You were trying to pass in the function
 extract_company(soup)
 
 #print(extract_location(soup))
 #print(extract_job_title(soup))
 #print(extract_company(soup))
 
+locations = extract_location(soup)
+jobs = extract_job_title(soup)
+companies = extract_company(soup)
+
 # Building the dataframe
-columns = ['location', 'job_title', 'company_name']
-job_postings = [(extract_location(soup)), (extract_job_title(soup)), (extract_company(soup))]
-df = pd.DataFrame(columns = columns)
-num = (len(df) + 1) 
-df.loc[num] = data
+columns = {'location': locations, 'job_title': jobs, 'company_name': companies}
+df = pd.DataFrame.from_dict(columns, orient='index')
+df = df.transpose()
+
+
 print(df)
-df
+
 
 df.to_csv('indeed_job_postings.csv')
