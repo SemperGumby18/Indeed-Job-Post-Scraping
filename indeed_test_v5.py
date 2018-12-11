@@ -46,12 +46,12 @@ jobs = extract_job_title(soup)
 companies = extract_company(soup)
 
 # Building the dataframe
-# columns = {'location': locations, 'job_title': jobs, 'company_name': companies} # All I'm doing is have it pull those variables from your functions in the column in one line.
-# job_postings = [(extract_location(soup)), (extract_job_title(soup)), (extract_company(soup))]
-df = pd.DataFrame({'Location': locations, 'Job Title': jobs, 'Company Name': companies})
-num = (len(df) + 1) 
-df.loc[num] = data
+columns = {'location': locations, 'job_title': jobs, 'company_name': companies}
+df = pd.DataFrame.from_dict(columns, orient='index')
+df = df.transpose()
+
+
 print(df)
-df
+
 
 df.to_csv('indeed_job_postings.csv')
